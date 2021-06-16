@@ -1,6 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+
 const { env } = require("process");
 
 //----------------------------------------------------------------
@@ -11,20 +14,31 @@ const app = express();
 
 //--Подключение роутов--------------------------------------------
 const indexRoutes = require("./routes/indexRoutes");
-const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
 
-//--
+//--Подключение midllewares----------------------------------------
 app.use(morgan("dev"));
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors());
 
 //--Базовый роутинг-----------------------------------------------
-app.use("/", indexRoutes);
-app.use("/user", userRoutes);
+app.use("/api", indexRoutes);
 app.use("/product", productRoutes);
 
+const PORT = process.env.PORT || 4000;
+
 //--Запуск сервера------------------------------------------------
-app.listen(process.env.PORT, () => {
-  console.clear();
-  console.log("Server has been started at PORT:", process.env.PORT);
-  dbConnect();
-});
+const startServer = async () => {
+  try {
+    app.listen(PORT, () => {
+      console.clear();
+      console.log(`Server has been started on PORT: ${PORT}`);
+      dbConnect();
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+startServer();

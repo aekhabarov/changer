@@ -11,7 +11,7 @@ function dbConnect() {
     socketTimeoutMS: 45000, // Закрывать socket после 45 секунд без активности
     family: 4, // И пользовать IPv4, IPv6 не использовать
   };
-  mongoose.connect(process.env.MONGOURL, options, (err) => {
+  mongoose.connect(process.env.MONGO_URL_LOCAL, options, (err) => {
     if (err) return console.log(err);
     return console.log("Data-base connected, PORT: 27017");
   });
