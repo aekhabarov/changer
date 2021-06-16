@@ -7,13 +7,11 @@
 - панель пользователя
 - личный кабинет
 - добавления объявления
+- витрина
 
 ### Технологии примененные в проекте:
 
-React / Redux / Thunk
-Express / Mongoose
-Yandex Maps API / Material-UI
-WebSockets
+React / Redux / Thunk / Express / Mongoose / JWT / WebSockets / Yandex Maps API / Material-UI /
 
 ---
 
