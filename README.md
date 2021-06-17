@@ -9,6 +9,10 @@
 - добавления объявления
 - витрина
 
+- регистрация при помощи JWT
+- валидация данных при регистрации
+- обработка ошибок
+
 ### Технологии примененные в проекте:
 
 React / Redux / Thunk / Express / Mongoose / JWT / WebSockets / Yandex Maps API / Material-UI /

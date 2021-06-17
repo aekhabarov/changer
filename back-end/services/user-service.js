@@ -27,7 +27,7 @@ class UserService {
     //Высылаем ссылку для активации на email пользователя
     await mailService.sendActivationMail(
       email,
-      `${process.env.API_URL}/api/activate${activationLink}`
+      `${process.env.API_URL}/api/activate/${activationLink}`
     );
     const userDto = new UserDto(user);
     const tokens = tokenService.generateTokens({ ...userDto });
@@ -43,6 +43,22 @@ class UserService {
     }
     user.isActivated = true;
     await user.save();
+  }
+
+  async login(email, password) {
+    const user = await User.findOne({ email });
+    if (!user) {
+      throw ApiError.BadRequest("Пользователь с таким email не был найден");
+    }
+    const isPassEquals = await bcrypt.compare(password, user.password);
+    if (!isPassEquals) {
+      throw ApiError.BadRequest("Пароль указан не верно");
+    }
+    const userDto = new UserDto(user);
+    const tokens = tokenService.generateTokens(userDto);
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);
+
+    return { ...tokens, user: userDto };
   }
 }
 
