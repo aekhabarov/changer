@@ -24,4 +24,4 @@ React / Redux / Thunk / Express / Mongoose / JWT / WebSockets / Yandex Maps API 
 Ссылка на рабочую версию проекта:
 https://github.com/gMellog/barter_PROJECT/
 
-<img src="/project-interface/project-interface.png">
+<img src="./project-interface/interface.png">
