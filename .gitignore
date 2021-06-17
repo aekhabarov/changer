@@ -13,6 +13,7 @@
 /build
 
 # misc
+/back-end/.env
 .DS_Store
 .env.local
 .env.development.local
